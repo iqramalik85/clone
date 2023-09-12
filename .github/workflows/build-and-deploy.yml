@@ -1,0 +1,25 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      
+      - name: Build code
+        run: |
+          # Your build commands here
+          npm install
+          npm build
+          
+      - name: Deploy code
+        run: |
+          # Your deployment commands here
+          ssh user@your-server "cd /path/to/deployment && git pull"
